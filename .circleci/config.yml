@@ -7,29 +7,41 @@ jobs:
         docker:
             -   image: "cimg/base:stable"
         steps:
-            - node/install
+            - node/install      # Setup node, so we can use to build and deploy
             - checkout
-            - aws-cli/setup
+            - aws-cli/setup     # Using the environment variables, setup aws-cli so we can update bucket with during front-end deployment.
+
+            # Install front end dependencies
             -   run:
                     name: Front-End Install
                     command: |
                         npm run frontend:install
+
+            # Install backend dependencies
             -   run:
                     name: Back-End Install
                     command: |
                         npm run backend:install
+
+            # Build front-end to production ready code.
             -   run:
                     name: Front-End Build
                     command: |
                         npm run frontend:build
+
+            # Build backend to production ready code.
             -   run:
                     name: Back-End Build
                     command: |
                         npm run backend:build
+
+            # Deploy front-end to s3 bucket
             - run:
                   name: Front-End Deploy
                   command: |
                       npm run frontend:deploy
+
+# Workflow to build
 workflows:
     udagram:
         jobs:

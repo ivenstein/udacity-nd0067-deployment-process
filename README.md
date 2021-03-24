@@ -1,11 +1,25 @@
 # Udagram
 
-This application is provided to you as an alternative starter project if you do not wish to host your own code done in the previous courses of this nanodegree. The udagram application is a fairly simple application that includes all the major components of a Full-Stack web application.
+The udagram application is a fairly simple application that includes all the major components of a Full-Stack web application.
+It consists of an aws database (RDS) service based on MongoDB for persisting data, it also made of a backend and a front
+end build with Angular. This project is mainly about using [AWS](https://aws.amazon.com/) services 
+(RDS, Elasticbeanstalk, S3 Bucket) to have an application deployed and also integrating CI/CD pipeline using 
+[Circleci](https://circleci.com/). Some information on the components and locations are listed below
 
+* Front-End (build with Angular) at [Udagram](http://nd0067-udagram-app-bucket.s3-website-us-east-1.amazonaws.com/)
+  
+  ``http://nd0067-udagram-app-bucket.s3-website-us-east-1.amazonaws.com/``
+
+  
+* Back-End (build with Angular) at [Udagram-Api](http://nd0067-udagram-api-app14-env.eba-gvdaejrx.us-east-1.elasticbeanstalk.com/)
+  
+  ``http://nd0067-udagram-api-app14-env.eba-gvdaejrx.us-east-1.elasticbeanstalk.com/``
+
+
+* Relational Database Service (RDS) at [Udagram-Postgres](fsnd-udacity-db.cx3r2hkzjjmg.us-east-1.rds.amazonaws.com)
 ## Getting Started
 
 1. Clone this repo locally into the location of your choice.
-1. Move the content of the udagram folder at the root of the repository as this will become the main content of the project.
 1. Open a terminal and navigate to the root of the repo
 1. follow the instructions in the installation step
 
@@ -30,11 +44,27 @@ The project can run but is missing some information to connect to the database a
 
 Provision the necessary AWS services needed for running the application:
 
-1. In AWS, provision a publicly available RDS database running Postgres. <Place holder for link to classroom article>
-1. In AWS, provision a s3 bucket for hosting the uploaded files. <Place holder for tlink to classroom article>
+1. In AWS, provision a publicly available RDS database running Postgres. 
+   Because the backend makes use of environment variables like 
+   ``POSTGRES_USERNAME``, ``POSTGRES_PASSWORD``, ``POSTGRES_DB``, ``PORT`` and ``POSTGRES_HOST`` to connect to database, 
+   that'll will have to setup. The `export` command can be used setup the environment variables, like this before starting 
+   the backend.
+   
+   ```
+     export <variable-name>="<variable_value>"
+   ```
+1. In AWS, provision a s3 bucket for hosting the uploaded files. This is mainly used for deployment of front-end. 
+   So, if you wish to deploy the backend to a specific s3 bucket, just create the s3 bucket on AWS and setup and environment
+   variable with the name `BUCKET_NAME` (this is used by the script in the `udacity-nd0067-deployment-process/udagram-frontend/bin/deploy.sh`)
+   when the command `npm run deploy` is executed with the front-end directory. 
+   
 1. Export the ENV variables needed or use a package like [dotnev](https://www.npmjs.com/package/dotenv)/.
-1. From the root of the repo, navigate udagram-api folder `cd starter/udagram-api` to install the node_modules `npm install`. After installation is done start the api in dev mode with `npm run dev`.
-1. Without closing the terminal in step 1, navigate to the udagram-frontend `cd starter/udagram-frontend` to intall the node_modules `npm install`. After installation is done start the api in dev mode with `npm run start`.
+   
+1. From the root of the repo, navigate udagram-api folder `cd udacity-nd0067-deployment-process/udagram-api` to 
+   install the node_modules `npm install`. After installation is done start the api in dev mode with `npm run dev`.
+
+1. Without closing the terminal in step 1, navigate to the udagram-frontend `cd udacity-nd0067-deployment-process/udagram-frontend` 
+   to intall the node_modules `npm install`. After installation is done start the api in dev mode with `npm run start`.
 
 ## Testing
 
@@ -54,11 +84,17 @@ Unit tests are using the Jasmine Framework.
 
 The e2e tests are using Protractor and Jasmine.
 
+### Contributing
+
+Contributions to the devopement of this project is highly appreciated. You can fork, make your changes and open a new 
+pull request for review and updates on the main application. 
+
 ## Built With
 
 - [Angular](https://angular.io/) - Single Page Application Framework
 - [Node](https://nodejs.org) - Javascript Runtime
 - [Express](https://expressjs.com/) - Javascript API Framework
+
 
 ## License
 
