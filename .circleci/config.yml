@@ -5,11 +5,11 @@ orbs:
 jobs:
     build:
         docker:
-            -   image: "cimg/base:stable"
+            - image: "cimg/base:stable"
         steps:
             - node/install      # Setup node, so we can use to build and deploy
             - checkout
-
+            - aws-cli/setup     # Using the environment variables, setup aws-cli so we can update bucket with during front-end deployment.
 
             # Install front end dependencies
             -   run:
@@ -35,15 +35,7 @@ jobs:
                     command: |
                         npm run backend:build
 
-    deploy:
-        requires:
-            - build
-        docker:
-            -   image: "cimg/base:stable" # Deploy front-end to s3 bucket
-        steps:
-            - checkout
-            - aws-cli/setup     # Using the environment variables, setup aws-cli so we can update bucket with during front-end deployment.
-
+            # Deploy front-end to s3 bucket
             -   run:
                     name: Front-End Deploy
                     command: |
@@ -53,13 +45,8 @@ jobs:
 workflows:
     udagram:
         jobs:
-            - build:
-                filters:
-                    branches:
-                        only:
-                            - master
-            - deploy:
-                  filters:
-                      branches:
-                          only:
-                              - master
+            -   build:
+                    filters:
+                        branches:
+                            only:
+                                - master
