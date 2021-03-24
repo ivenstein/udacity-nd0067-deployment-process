@@ -12,7 +12,7 @@ described below alongside with images
 - Front-Deploy Build (using `npm`)
 
 Here is a visual structure of the build
-![Piiple Line view](screenshots/pipeline-diagram.png)
+![Piiple Line view](../screenshots/pipeline-diagram.png)
 
 Here is a visual of a `success`ful pipeline run for the build job in circleci
-![Circleci build success](screenshots/circleCi/circleci-2.png)
+![Circleci build success](../screenshots/circleCi/circleci-2.png)

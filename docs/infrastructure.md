@@ -7,4 +7,4 @@ The infrastructure used in this project is made up of 4 key components/services 
 - AWS S3 Bucket. Used to service the front-end view (or actual) site that users interact with. This is where operatrions
   like signin, signout, feeds request and others are made (originate from)
   
-![image](screenshots/aws_architectural_diagra.png)
+![image](../screenshots/aws_architectural_diagra.png)
