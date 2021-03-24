@@ -36,10 +36,10 @@ jobs:
                         npm run backend:build
 
             # Deploy front-end to s3 bucket
-            - run:
-                  name: Front-End Deploy
-                  command: |
-                      npm run frontend:deploy
+            -   run:
+                    name: Front-End Deploy
+                    command: |
+                        npm run frontend:deploy
 
 # Workflow to build
 workflows:
